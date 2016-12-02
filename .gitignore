@@ -1,0 +1,27 @@
+# Android Studio
+*.iml
+.idea
+.gradle
+build/
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+local.properties
+obj/
+libs/
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+.DS_Store
+
+# Eclipse project files
+.classpath
+.project
+
+# Doxygen generated files
+docs
