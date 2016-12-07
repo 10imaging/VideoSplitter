@@ -9,11 +9,120 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:focusableInTouchMode="true"
     tools:context="com.tenimaging.videosplitter.MainActivity">
 
-    <TextView
-        android:id="@+id/sample_text"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/frame1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#4285f4"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/outDirLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/outDirLabel"/>
+            <Button
+                android:id="@+id/browsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="50dp"
+                android:onClick="onBrows"
+                android:text="@string/brows"/>
+            <EditText
+                android:id="@+id/addressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/outDirLabel"
+                android:layout_toStartOf="@id/browsButton"
+                android:layout_marginStart="5dp"
+                android:background="#ffff"
+                android:hint="@string/hintAddress"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/folderName"/>
+            <EditText
+                android:id="@+id/folderText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ffff"
+                android:hint="@string/hintFolderName"
+                />
+            <Button
+                android:id="@+id/splitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onSplit"
+                android:text="@string/split"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/runSelector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/frameSkip"/>
+            <EditText
+                android:id="@+id/skipRatio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                android:minWidth="60dp"
+                android:background="#ffff"
+                android:hint="@string/hintSkip"
+                android:inputType="numberDecimal"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#57ffff"
+            android:layout_margin="2dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/logLabel"/>
+        <ListView
+            android:id="@+id/logList"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            />
+
+    </LinearLayout>
+    <GridView
+        android:layout_height="match_parent"
+        android:id="@+id/gridView1"
+        android:layout_width="match_parent"
+        android:numColumns="auto_fit"
+        android:columnWidth="100dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center_horizontal"
+        android:horizontalSpacing="0dp"
+        android:verticalSpacing="5dp"
+        android:listSelector="@android:color/transparent"
+        android:padding="0dp"
+        android:layout_above="@id/frame1">
+    </GridView>
 </RelativeLayout>
