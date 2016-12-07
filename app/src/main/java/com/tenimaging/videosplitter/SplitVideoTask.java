@@ -11,6 +11,7 @@ import android.widget.ListView;
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 import java.util.Locale;
@@ -158,7 +159,10 @@ public class SplitVideoTask extends AsyncTask<Void,Void,Void> {
             if ( map != null ) {
                 // we have a frame to save. Convert the frame into Mat and save it.
                 Mat frame = new Mat();
-                Utils.bitmapToMat(map, frame);
+                Utils.bitmapToMat(map, frame); // Bitmap to RGBA
+
+                // Convert RGBA to BGR
+                Imgproc.cvtColor(frame, frame, Imgproc.COLOR_RGBA2BGR);
 
                 String fileName = String.format(Locale.ENGLISH,"%1$s/%2$s_%3$06d.jpg",mOutDir.getAbsolutePath(),
                         FileParser.getBaseName(mFile), i);
