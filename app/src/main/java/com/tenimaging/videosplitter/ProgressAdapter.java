@@ -123,7 +123,6 @@ public class ProgressAdapter extends BaseAdapter {
             return true;
         } catch (IndexOutOfBoundsException ex ) {
             // Task must have been removed or does not exist
-            ex.printStackTrace();
             return false;
         }
     }
@@ -165,7 +164,6 @@ public class ProgressAdapter extends BaseAdapter {
             }
         } catch(IndexOutOfBoundsException ex ) {
             // Task must have already been removed
-            ex.printStackTrace();
             // We do not care
         }
         notifyDataSetChanged();
