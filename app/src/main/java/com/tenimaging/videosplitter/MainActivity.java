@@ -27,7 +27,8 @@ import java.util.ArrayList;
  * Main activity that displays our application
  */
 public class MainActivity extends AppCompatActivity {
-    private static final String BASE_FOLDER= Environment.getExternalStorageDirectory()+"/DCIM/"; // Baseline folder for output
+    private static final String EXTERNAL_DIR = Environment.getExternalStorageDirectory()+"/DCIM/"; // Baseline folder for output
+    private static final String BASE_DIR = EXTERNAL_DIR+"camera0/";
     static final String TAG = "MainActivity";   // TAG that marks log messages from this class
     private int mSelected;                      // id of the video that is selected
     private ListView mListView;                 // ListView that displays progress of VideoSplitTasks
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
      * Used to get the Baseline output directory
      * @return String path to the baseline output directory on the SD card
      */
-    static public String getBaseDir() {
-        return BASE_FOLDER;
+    static public String getExternalDir() {
+        return EXTERNAL_DIR;
     }
 
     /**
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         
         // Get the path and folder Views
         mPathView = (EditText) findViewById(R.id.addressText);
-        mPathView.setHint(BASE_FOLDER);
+        mPathView.setHint(BASE_DIR);
         mFolderView = (EditText) findViewById(R.id.folderText);
 
         // Set default video selected as -1 so we do not accidentally split a video we do not have selected
@@ -131,13 +132,13 @@ public class MainActivity extends AppCompatActivity {
      * Called by Brows button and opens FileDialog to get new output path
      * @param view button pressed to run this method
      */
-    public void onBrows(View view) {
+    public void onBrowse(View view) {
 
-        Log.i(TAG, "onBrows");
+        Log.i(TAG, "onBrowse");
 
         // Create a new FileDialog in order to search for a new parent folder for our output directory
         // to be saved into
-        File mPath = new File(BASE_FOLDER);
+        File mPath = new File(BASE_DIR);
         FileDialog fileDialog = new FileDialog(this, mPath);
         fileDialog.setSelectDirectoryOption(true);
 

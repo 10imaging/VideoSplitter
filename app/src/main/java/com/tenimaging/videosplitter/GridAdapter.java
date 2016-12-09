@@ -75,7 +75,6 @@ public class GridAdapter extends BaseAdapter {
         mCount = mFiles.size();
         mLastSelected = null;
         selectedID = -1;
-
     }
 
     /**
@@ -136,7 +135,7 @@ public class GridAdapter extends BaseAdapter {
 
         // This stack is used to store all folders we have not yet checked.
         Stack<File> stack = new Stack<>();
-        File current = new File(MainActivity.getBaseDir());
+        File current = new File(MainActivity.getExternalDir());
 
         stack.add(current);
 

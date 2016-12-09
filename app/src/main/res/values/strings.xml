@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">VideoSplitter</string>
-    <string name="brows">brows</string>
+    <string name="browse">browse</string>
     <string name="outDirLabel">Output Path</string>
     <string name="folderName">Folder Name:</string>
     <string name="logLabel">Log</string>
-    <string name="hintAddress">/sdcard/DCIM</string>
+    <string name="hintAddress">/sdcard/DCIM/camera0</string>
     <string name="hintFolderName">folder name</string>
     <string name="split">split</string>
     <string name="frameSkip">Frame Skip Ratio:</string>
