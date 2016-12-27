@@ -93,12 +93,14 @@ public class SplitVideoTask extends AsyncTask<Void,Void,Void> {
             data = mVideo.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_FRAMERATE);
             double frameRate = Double.valueOf(data);
 
+            Log.i(TAG, "frameRate = "+frameRate);
+
             double millisecondsPerFrame = MILLI_ONE_SECOND/frameRate;
 
             // get number of frames and number of microseconds between the frames we want
             mNumFrames = (int)(duration/millisecondsPerFrame);
 
-            mFrameLength = (long)(MICRO_ONE_SECOND/frameRate*skipRatio);
+            mFrameLength = (long)((MICRO_ONE_SECOND/frameRate)*skipRatio);
 
         } else {
             Log.i(TAG, "failed to open Video file: "+mFile.getAbsolutePath());
@@ -155,7 +157,7 @@ public class SplitVideoTask extends AsyncTask<Void,Void,Void> {
         int frameCount = (int)(mNumFrames/mSkipRatio);
         for ( int i = 0; i < frameCount && !mCanceled; i++ ) {
 
-            Bitmap map = mVideo.getFrameAtTime(i*mFrameLength, FFmpegMediaMetadataRetriever.OPTION_CLOSEST_SYNC);
+            Bitmap map = mVideo.getFrameAtTime(i*mFrameLength, FFmpegMediaMetadataRetriever.OPTION_CLOSEST);
             if ( map != null ) {
                 // we have a frame to save. Convert the frame into Mat and save it.
                 Mat frame = new Mat();
@@ -171,6 +173,8 @@ public class SplitVideoTask extends AsyncTask<Void,Void,Void> {
                 //update our progress to the UI
                 mFrame = i;
                 publishProgress();
+                frame.release();
+                map.recycle();
             } // else we cannot save an empty frame
         } // end for loop through all frames in video
 
@@ -207,7 +211,7 @@ public class SplitVideoTask extends AsyncTask<Void,Void,Void> {
      */
     @Override
     public String toString() {
-        return SplitVideoTask.class.getName()+"{ input="+mFile+", output="+
+        return "{ input="+mFile+", output="+
                 mOutDir+", # frames="+mNumFrames+ ", frame length="+mFrameLength + ", ID="+mId +", skip ratio="+ mSkipRatio+ "}";
     }
 }
